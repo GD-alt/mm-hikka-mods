@@ -1,55 +1,5 @@
-# ---------------------------------------------------------------------------------
-#  ,_     _          
-#  |\_,-~/          
-#  / _  _ |    ,--.  🌐 This module was loaded through https://t.me/hikkamods_bot
-# (  @  @ )   / ,-'  🔓 Not licensed.
-#  \  _T_/-._( (     
-#  /         `. \    ⚠️ Owner of this bot doesn't take responsibility for any
-# |         _  \ |   errors caused by this module or this module being non-working
-#  \ \ ,  /      |   and doesn't take ownership of any copyrighted material.
-#   || |-_\__   /    
-#  ((_/`(____,-'     
-# ---------------------------------------------------------------------------------
-# Name: RPMod
-# Description: Модуль RPMod.
-# Author: trololo65
-# Commands:
-# .dobrp  | .delrp   | .rpmod      | .rplist | .rpnick
-# .rpback | .rpblock | .useraccept | .rpconf
-# ---------------------------------------------------------------------------------
+# meta developer: @trololo_1 (@mm_mods mod)
 
-# meta developer: @mm_mods modded; orig. @trololo_1
-# MIT License
-
-# Copyright (c) 2022 trololo65
-
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
-
-import subprocess
-
-try:
-    import emoji
-except:
-    mod_inst = subprocess.Popen("pip install emoji", shell=True)
-    mod_inst.wait()
-    import emoji
 from .. import loader, utils
 import string, pickle, re
 from telethon.tl.types import Channel
@@ -112,7 +62,7 @@ conf_default = {
 class RPMod(loader.Module):
     """Модуль RPMod."""
 
-    strings = {'name': 'RPMod'}
+    strings = {'name': 'LiMERPMod'}
 
     async def client_ready(self, client, db):
         self.db = db
@@ -322,23 +272,12 @@ class RPMod(loader.Module):
             )
         lst = []
         nick = ""
-        for x in args:
-            if x in emoji.UNICODE_EMOJI["en"].keys():
-                lst.append(x)
-            if x not in emoji.UNICODE_EMOJI["en"].keys():
-                nick += x
-        if len(lst) > 3:
-            await utils.answer(
-                message,
-                f"Ник пользователя <b>{str(user.id)}</b> изменён на '<b>{args}</b>'",
-            )
-        else:
-            nicks[str(user.id)] = args
-            self.db.set("RPMod", "rpnicks", nicks)
-            await utils.answer(
-                message,
-                f"Ник пользователя <b>{str(user.id)}</b> изменён на '<b>{args}</b>'",
-            )
+        nicks[str(user.id)] = args
+        self.db.set("RPMod", "rpnicks", nicks)
+        await utils.answer(
+            message,
+            f"Ник пользователя <b>{str(user.id)}</b> изменён на '<b>{args}</b>'",
+        )
 
     async def rpbackcmd(self, message):
         """Бекап РП-команд.\n .rpback для просмотра аргументов."""
@@ -585,6 +524,12 @@ class RPMod(loader.Module):
             return await utils.answer(message, "Неверная цифра.")
         self.db.set("RPMod", "rpconfigurate", conf)
         await utils.answer(message, f"Конфигурация успешно изменена.")
+    
+    
+    async def mmminfo(self, message):
+        """Прочитать информаыию о моде и обновлениях, если те были."""
+        await utils.answer(message, '♍ <b>LiMERPMod</b> (1.0)\nМодификация модуля RPMod @trololo_1 (<3) от @mm_mods. Заметки о выпуске:\n\n• Убраны лимиты на количество РП-команд;\n•Убраны лимиты на длину ника;\n• Убрана проверка на наличие лишь стандартных эмоджи — можете теперь вставлять, что хотите — включая кастомные эмодзи…\n• Регистр в дополнениях и репликах теперь сохраняется. Если дополнения нет, для сохранения регистра пгсоачьте пробел перед переносом;\n• Убран багованный импорт с подпроцессом.\n\n🌠 <i>Enjoy!</i>')
+    
 
     async def watcher(self, message):
         try:
