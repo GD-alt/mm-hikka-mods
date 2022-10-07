@@ -1,4 +1,4 @@
-# meta developer: @trololo_1 (@mm_mods mod)
+# meta developer: @mm_mods
 
 from .. import loader, utils
 import string, pickle, re
