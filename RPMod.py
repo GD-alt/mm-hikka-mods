@@ -60,7 +60,7 @@ conf_default = {
 
 @loader.tds
 class RPMod(loader.Module):
-    """Модуль RPMod."""
+    """Слегка улучшенный мод на модуль от @trololo_1."""
 
     strings = {'name': 'LiMERPMod'}
 
