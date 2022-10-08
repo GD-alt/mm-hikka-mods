@@ -538,7 +538,7 @@ class RPMod(loader.Module):
                 self.db.set("RPMod", "useraccept", userA)
                 await utils.answer(
                     message,
-                    self.strings("off-for-usr").format(args)
+                    self.strings("off-for-user").format(args)
                 )
             elif args in userA["chats"]:
                 userA["chats"].remove(args)
@@ -560,7 +560,7 @@ class RPMod(loader.Module):
                 self.db.set("RPMod", "useraccept", userA)
                 await utils.answer(
                     message,
-                    self.strings("on-for-usr").format(args),
+                    self.strings("on-for-user").format(args),
                 )
         else:
             await utils.answer(message, self.strings("s-t-wrong"))
@@ -643,9 +643,9 @@ class RPMod(loader.Module):
             me_id = (await message.client.get_me()).id
 
             if (
-                message.sender_id not in users_accept["users"]
-                and message.sender_id != me_id
-                and chat_rp.id not in users_accept["chats"]
+                    message.sender_id not in users_accept["users"]
+                    and message.sender_id != me_id
+                    and chat_rp.id not in users_accept["chats"]
             ):
                 return
             me = await message.client.get_entity(message.sender_id)
@@ -654,16 +654,7 @@ class RPMod(loader.Module):
                 nick = nicks[str(me.id)]
             else:
                 nick = me.first_name
-            if ' ' in message.text and '\n' not in message.text:
-                args = message.text.split(' ', 1)[0].casefold()+' '+message.text.split(' ', 1)[1]
-            elif '\n' in message.text:
-                arl = message.text.split('\n', 1)
-                if ' ' in arl[0]:
-                    args = arl[0].split(' ', 1)[0].casefold() + ' ' + arl[0].split(' ', 1)[1] + '\n' + arl[1]
-                else:
-                    args = arl[0].casefold()+'\n'+arl[1]
-            else:
-                args = message.text.casefold()
+            args = message.text
             lines = args.splitlines()
             tags = lines[0].split(" ")
             if not tags[-1].startswith("@"):
@@ -674,13 +665,20 @@ class RPMod(loader.Module):
                     user = await message.client.get_entity(tags[-1])
                 else:
                     user = await message.client.get_entity(int(tags[-1][1:]))
-                lines[0] = lines[0].rsplit(" ", 1)[0]
-            detail = lines[0].split(" ", maxsplit=1)
+            detail = lines[0].split(" ") if ' ' in lines[0] else [lines[0]]
+            skippr = 0
+            addit = " "
             if len(detail) < 2:
-                detail.append(" ")
-            if detail[0] not in comand.keys():
-                return
-            detail[1] = " " + detail[1]
+                rpt = detail[0].casefold()
+            else:
+                rpt = detail[0].casefold()
+                addit = " ".join(detail[1:])
+            if rpt not in comand.keys():
+                while rpt not in comand.keys():
+                    rpt += " " + detail[skippr].casefold()
+                    skippr += 1
+
+                addit = " ".join(detail[skippr+1:])
             user.first_name = (
                 nicks[str(user.id)] if str(user.id) in nicks else user.first_name
             )
@@ -731,12 +729,12 @@ class RPMod(loader.Module):
             )
 
             rpMessageSend = ""
-            if detail[0] in emojies.keys():
+            if rpt in emojies.keys():
                 rpMessageSend += emojies[detail[0]] + " | "
-            rpMessageSend += f"<a href=tg://user?id={me.id}>{nick}</a> {s1[0]}{comand[detail[0]]}{s1[1]} <a href=tg://user?id={user.id}>{user.first_name}</a>{detail[1]}"
+            rpMessageSend += f"<a href=tg://user?id={me.id}>{nick}</a> {s1[0]}{comand[rpt]}{s1[1]} <a href=tg://user?id={user.id}>{user.first_name}</a> {addit}"
             if len(lines) >= 2:
-                rpMessageSend += "\n{0} {1[0]}{2}{1[1]} {3[0]}{4}{3[1]}".format(
-                    sE, s2, self.strings("with-replica"), s3, sS.join(lines[1:])
+                rpMessageSend += "\n{0} {1[0]}{4}{1[1]} {2[0]}{3}{2[1]}".format(
+                    sE, s2, s3, sS.join(lines[1:], self.strings("with-replica"))
                 )
             if rezjim == 1:
                 return await utils.answer(message, rpMessageSend)
