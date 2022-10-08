@@ -6,37 +6,37 @@ from telethon.tl.types import Channel
 
 conf_default = {
     "-s1": {  # СТИЛИ для действия
-        "1": [False, "<b>жирный</b>", "<b>", "</b>"],
-        "2": [False, "<i>курсив</i>", "<i>", "</i>"],
-        "3": [False, "<u>подчеркнутый</u>", "<u>", "</u>"],
-        "4": [False, "<s>зачёркнутый</s>", "<s>", "</s>"],
+        "1": [False, "<b>bold/жирный</b>", "<b>", "</b>"],
+        "2": [False, "<i>italic/курсив</i>", "<i>", "</i>"],
+        "3": [False, "<u>underlined/подчеркнутый</u>", "<u>", "</u>"],
+        "4": [False, "<s>strikethrough/зачёркнутый</s>", "<s>", "</s>"],
         "5": [
             False,
-            "<tg-spoiler>скрытый</tg-spoiler>",
+            "<tg-spoiler>spoiler/скрытый</tg-spoiler>",
             "<tg-spoiler>",
             "</tg-spoiler>",
         ],
     },
     "-s2": {  # СТИЛИ для "С репликой"
-        "1": [True, "<b>жирный</b>", "<b>", "</b>"],
-        "2": [False, "<i>курсив</i>", "<i>", "</i>"],
-        "3": [False, "<u>подчеркнутый</u>", "<u>", "</u>"],
-        "4": [False, "<s>зачёркнуто</s>", "<s>", "</s>"],
+        "1": [True, "<b>bold/жирный</b>", "<b>", "</b>"],
+        "2": [False, "<i>italic/курсив</i>", "<i>", "</i>"],
+        "3": [False, "<u>underlined/подчеркнутый</u>", "<u>", "</u>"],
+        "4": [False, "<s>strikethrough/зачёркнутый</s>", "<s>", "</s>"],
         "5": [
             False,
-            "<tg-spoiler>скрытый</tg-spoiler>",
+            "<tg-spoiler>spoiler/скрытый</tg-spoiler>",
             "<tg-spoiler>",
             "</tg-spoiler>",
         ],
     },
     "-s3": {  # СТИЛИ для реплики
-        "1": [False, "<b>жирный</b>", "<b>", "</b>"],
-        "2": [False, "<i>курсив</i>", "<i>", "</i>"],
-        "3": [False, "<u>подчеркнутый</u>", "<u>", "</u>"],
-        "4": [False, "<s>зачёркнутый</s>", "<s>", "</s>"],
+        "1": [False, "<b>bold/жирный</b>", "<b>", "</b>"],
+        "2": [False, "<i>italic/курсив</i>", "<i>", "</i>"],
+        "3": [False, "<u>underlined/подчеркнутый</u>", "<u>", "</u>"],
+        "4": [False, "<s>strikethrough/зачёркнутый</s>", "<s>", "</s>"],
         "5": [
             False,
-            "<tg-spoiler>скрытый</tg-spoiler>",
+            "<tg-spoiler>spoiler/скрытый</tg-spoiler>",
             "<tg-spoiler>",
             "</tg-spoiler>",
         ],
@@ -50,19 +50,144 @@ conf_default = {
         "6": [False, "🏳️‍🌈"],
     },
     "-sS": {  # РАЗРЫВ строки в реплике
-        "1": [True, "пробел", " "],
-        "2": [False, "разрыв строки", "\n"],
-        "3": [False, "точка + пробел", ". "],
-        "4": [False, "запятая + пробел", ", "],
+        "1": [True, "space/пробел", " "],
+        "2": [False, "line break/разрыв строки", "\n"],
+        "3": [False, "dot + space/точка + пробел", ". "],
+        "4": [False, "comma + space/запятая + пробел", ", "],
     },
 }
 
 
 @loader.tds
 class RPMod(loader.Module):
-    """Слегка улучшенный мод на модуль от @trololo_1."""
+    """A little upgraded mod of module of @trololo_1."""
 
-    strings = {'name': 'LiMERPMod'}
+    strings = {
+        'name': 'LiMERPMod',
+        'separator…': '<b>Here\'s an emoji separator, but no emoji. eh</b>',
+        'name?': '<b>Where\'s the name of the RP command?</b>',
+        'action?': '<b>Where\'s the action of the RP command?</b>',
+        'aarf': '<b>RP commands can\'t be named "all"</b>',
+        'added1': "<b>Command '<code>{}</code>' succesfully added with emoji '{}'!</b>",
+        'added2': "<b>Command '<code>{}</code>' succesfully added!</b>",
+        'weresall': '<b>You\'ve not entered separator or have\'nt entered anything at all.</b>',
+        'cleared': '<b>RP commands succesfully cleared!</b>',
+        'arg?': '<b>Where\'s the argument?</b>',
+        'deleted': '<b>RP command <code>{}</code> succesfully deleted!</b>',
+        'notfound': '<b>Command <code>{}</code> not found!</b>',
+        'on': '<b>RP commands are now on!</b>',
+        'off': '<b>RP commands are now off!</b>',
+        'mode': '<b>Mode is now <code>{}</code>!</b>',
+        'send': 'sending messages',
+        'edit': 'editing messages',
+        's-t-wrong': '<b>Something went wrong!</b>',
+        'nick-changed': '<b>RP nickname of {} succesfully changed to <code>{}</code>!</b>',
+        'count': '<b>You have <code>{}</code> commands</b>',
+        'error-with-type': '<b>Error: <code>{}</code></b>',
+        'itsnotfile': '<b>It\'s not a file!</b>',
+        'actualised': '<b>RP commands succesfully actualised!</b>',
+        'chat-excluded': '<b>Chat {} succesfully excluded!</b>',
+        'chat-included': '<b>Chat {} succesfully included!</b>',
+        'id-wrong': '<b>Wrong ID!</b>',
+        'empty-exclude': '<b>Excluded chats list is empty!</b>',
+        'excluded-chats': '<b>Excluded chats:</b>',
+        'on-in-chat': '<b>RP commands are now on for members of this chat!</b>',
+        'off-in-chat': '<b>RP commands are now off for members of this chat!</b>',
+        'who-have': '<b>Who have RP commands access:</b>',
+        'chats-s': '<b>Chats:</b>',
+        'users-s': '<b>Users:</b>',
+        'on-for-usr': '<b>RP commands are now on for <code>{}</code>!</b>',
+        'off-for-usr': '<b>RP commands are now off for <code>{}</code>!</b>',
+        'whatschanged': '''🍋 <b>LIME</b> (1.1) — mod of RPMod (@trololo_1) by @mm_mods
+        What\'s changed?
+        • No limits now!
+        • No check for emoji validity now — add custom emojies…
+        • No buggy import now, everyone can use the module.
+        • Additions and replicas now save there\'s case.
+        Enjoy!''',
+        'with-replica': 'With replica:',
+        'backup-args-help': '<b>Usage:</b>\n.rpback [-b to save| -l to load (with reply)]',
+        'arg-unknown': '<b>Unknown argument!</b>',
+        'num-unknown': '<b>Unknown number!</b>',
+        'done': '<b>Done!</b>',
+        'less-then-2': '<b>Less then 2 arguments!</b>',
+        'config': '⚙️ <b>Setting up the template for command:</b>\n-s1 --- turn on/off style for action:\n{s1}\n-s2 '
+                  '--- same as s1, but for "With replica" text:\n{}\n-s3 --- same as s2, but for replica:\n{}\n-sE '
+                  '--- choose emoji before replica:\n{}\n-sS --- choose symbol for line break in reply:\n{'
+                  '}\n\nExample:\n<code>.rpconf -s1 2</code>',
+        'config1': '⚙️ <b>Setting up the template for command:',
+    }
+
+    strings_ru = {
+        'name': 'LiMERPMod',
+        'separator…': '<b>Вот разделитель, но нет эмодзи. епт</b>',
+        'name?': '<b>Где имя РП-команды?</b>',
+        'action?': '<b>Где действие РП-команды?</b>',
+        'aarf': '<b>РП-команды не могут называться "all"</b>',
+        'added1': "<b>Команда '<code>{}</code>' успешно добавлена с эмодзи '{}'!</b>",
+        'added2': "<b>Команда '<code>{}</code>' успешно добавлена!</b>",
+        'weresall': '<b>Вы не ввели разделитель или ничего не ввели вообще.</b>',
+        'cleared': '<b>РП-команды успешно очищены!</b>',
+        'arg?': '<b>Где аргумент?</b>',
+        'deleted': '<b>РП-команда <code>{}</code> успешно удалена!</b>',
+        'notfound': '<b>Команда <code>{}</code> не найдена!</b>',
+        'on': '<b>РП-команды теперь включены!</b>',
+        'off': '<b>РП-команды теперь выключены!</b>',
+        'mode': '<b>Режим теперь <code>{}</code>!</b>',
+        'send': 'отправку сообщений',
+        'edit': 'редактирование сообщений',
+        's-t-wrong': '<b>Что-то пошло не так!</b>',
+        'nick-changed': '<b>Ник {} успешно изменен на <code>{}</code>!</b>',
+        'count': '<b>У вас <code>{}</code> команд</b>',
+        'error-with-type': '<b>Ошибка: <code>{}</code></b>',
+        'itsnotfile': '<b>Это не файл!</b>',
+        'actualised': '<b>РП-команды успешно обновлены!</b>',
+        'chat-excluded': '<b>Чат {} успешно исключен!</b>',
+        'chat-included': '<b>Чат {} успешно включен!</b>',
+        'id-wrong': '<b>Неверный ID!</b>',
+        'empty-exclude': '<b>Список исключённых чатов пуст!</b>',
+        'excluded-chats': '<b>Исключённые чаты:</b>',
+        'on-in-chat': '<b>РП-команды теперь включены для участников этого чата!</b>',
+        'off-in-chat': '<b>РП-команды теперь выключены для участников этого чата!</b>',
+        'who-have': '<b>Кто имеет доступ к РП-командам:</b>',
+        'chats-s': '<b>Чаты:</b>',
+        'users-s': '<b>Пользователи:</b>',
+        'on-for-usr': '<b>РП-команды теперь включены для <code>{}</code>!</b>',
+        'off-for-usr': '<b>РП-команды теперь выключены для <code>{}</code>!</b>',
+        'whatschanged': '''🍋 <b>LIME</b> (1.1) — модуль RPMod (@trololo_1) от @mm_mods
+        Что изменилось?
+        • Больше нет ограничений!
+        • Больше нет проверки на валидность эмодзи — добавляйте кастомные эмодзи…
+        • Больше нет багов с импортом — теперь модуль может использовать каждый.
+        • Дополнения и реплики теперь сохраняют свой регистр.
+        Наслаждайтесь!''',
+        'with-replica': 'С репликой:',
+        'backup-args-help': '<b>Использование:</b>\n.rpback [-b для сохранения| -l для загрузки (с ответом)]',
+        'arg-unknown': '<b>Неизвестный аргумент!</b>',
+        'num-unknown': '<b>Неизвестная цифра!</b>',
+        'done': '<b>Готово!</b>',
+        'less-than-2': '<b>Меньше двух аргументов передано.</b>',
+        'config': '⚙️ <b>Настройка шаблона для команды:</b>\n-s1 --- включить/выключить стиль для действия:\n{}\n-s2 '
+                  '--- аналогично для s1, но действует на текст "С репликой":\n{}\n-s3 --- аналогично для s2, '
+                  'но действует на саму реплику:\n{}\n-sE --- выбор эмодзи перед репликой:\n{}\n-sS --- выбор символа '
+                  'для разрыва строк в реплике:\n{}\n\nПример:\n<code>.rpconf -s1 2</code>',
+        'config1': '⚙️ <b>Настройка шаблона для команды:',
+        '_cls_doc': 'Слегка улучшенный мод на модуль от @trololo_1.',
+        '_cmd_doc_dobrp': 'Создать РП-команду. Аргументы: <команда>/<действие>[/<эмодзи>]',
+        '_cmd_doc_delrp': 'Удалить РП-команду. Аргументы: <команда>',
+        '_cmd_doc_rplist': 'Показать список РП-команд.',
+        '_cmd_doc_rpconf': 'Настроить шаблон для РП-команд. Аргументы: <параметр> <значение>',
+        '_cmd_doc_rpback': 'Сохранить/загрузить РП-команд. Аргументы: -b/-l',
+        '_cmd_doc_rpnick': 'Изменить ник для РП-команд. Аргументы: <ник> или без ника, чтобы его сбросить. '
+                           'В ответ на сообщение нужного пользователя.',
+        '_cmd_doc_rpblock': 'Заблокировать/разблокировать РП-команды в чате. Аргументы: <айди чата>. '
+                            'Можно и без него, чтобы сменить настройки в этом чате.',
+        '_cmd_doc_rpmod': 'Изменить режим РП-команд.',
+        '_cmd_doc_useraccept': 'Допустить или нет пользователя/чат в РП-команды. Аргументы: <айди пользователя/чата>. '
+                               'Можно без ответа и аргумента, тогда действие будет выполнена над текущим чатом. '
+                               'Можно просто без аргумента , тогда действие будет выполнено над пользователем из ответа.',
+        '_cmd_doc_mmminfo': 'Показать информацию о моде.',
+    }
 
     async def client_ready(self, client, db):
         self.db = db
@@ -75,27 +200,9 @@ class RPMod(loader.Module):
         if not self.db.get("RPMod", "rpnicks", False):
             self.db.set("RPMod", "rpnicks", {})
         if not self.db.get("RPMod", "rpcomands", False):
-            comands = {
-                "чмок": "чмокнул",
-                "лизь": "лизнул",
-                "кусь": "кусьнул",
-                "поцеловать": "поцеловал",
-                "выебать": "выебал",
-                "трахнуть": "трахнул",
-                "выпороть": "выпорол",
-                "шлепнуть": "шлепнул",
-                "отлизать": "отлизал у",
-                "прижать": "прижал",
-                "погладить": "погладил",
-                "да.": "пизда",
-                "где.": "в пизде",
-                "нет.": "пидора ответ",
-                "бывает.": "ну это пиздец конечно на самом деле",
-                "обнять": "обнял",
-            }
-            self.db.set("RPMod", "rpcomands", comands)
+            self.db.set("RPMod", "rpcomands", {})
         if not self.db.get("RPMod", "rpemoji", False):
-            self.db.set("RPMod", "rpemoji", {"лизь": "👅"})
+            self.db.set("RPMod", "rpemoji", {})
         if not self.db.get("RPMod", "useraccept", False):
             self.db.set("RPMod", "useraccept", {"chats": [], "users": []})
         elif type(self.db.get("RPMod", "useraccept")) == type([]):
@@ -112,7 +219,7 @@ class RPMod(loader.Module):
             )
 
     async def dobrpcmd(self, message):
-        """Используй: .dobrp (команда) / (действие) / (эмодзи) чтобы добавить команду. Можно и без эмодзи."""
+        """Use: .dobrp (command) / (action) / (emoji) to add command. You can do it without emoji."""
         args = utils.get_args_raw(message)
         dict_rp = self.db.get("RPMod", "rpcomands")
 
@@ -121,7 +228,7 @@ class RPMod(loader.Module):
             value_rp = str(args.split("/", maxsplit=2)[1]).strip()
             lenght_args = args.split("/")
             count_emoji = 0
-            
+
             if len(lenght_args) >= 3:
                 emoji_rp = str(message.text.split("/", maxsplit=2)[2]).strip()
                 dict_emoji_rp = self.db.get("RPMod", "rpemoji")
@@ -130,26 +237,20 @@ class RPMod(loader.Module):
                 count_emoji = 1
                 if not emoji_rp or not emoji_rp.strip():
                     await utils.answer(
-                        message, f"<b>Разделитель для эмодзи есть, а их нет? хм.</b>"
+                        message, self.strings("separator…")
                     )
                     return
             key_len = [len(x) for x in key_rp.split()]
 
             if not key_rp or not key_rp.strip():
-                await utils.answer(message, "<b>Вы не ввели название РП-команды.</b>")
+                await utils.answer(message, self.strings("name?"))
             elif not value_rp or not value_rp.strip():
                 await utils.answer(
-                    message, "<b>Вы не ввели действие для РП-команды.</b>"
-                )
-            elif int(len(key_len)) > 1:
-                await utils.answer(
-                    message,
-                    "<b>В качестве РП-команды было введено больше одного слова.</b>",
+                    message, self.strings("action")
                 )
             elif key_rp == "all":
                 await utils.answer(
-                    message,
-                    "<b>Использовать '<code>all</code>' в качестве названия команды запрещено!</b>",
+                    message, self.strings("aarf"),
                 )
             elif count_emoji == 1:
                 dict_emoji_rp[key_rp] = emoji_rp
@@ -158,22 +259,22 @@ class RPMod(loader.Module):
                 self.db.set("RPMod", "rpemoji", dict_emoji_rp)
                 await utils.answer(
                     message,
-                    f"<b>Команда '<code>{key_rp}</code>' успешно добавлена с эмодзи '{emoji_rp}'!</b>",
+                    self.strings("added1").format(key_rp, emoji_rp),
                 )
             else:
                 dict_rp[key_rp] = value_rp
                 self.db.set("RPMod", "rpcomands", dict_rp)
                 await utils.answer(
                     message,
-                    f"<b>Команда '<code>{key_rp}</code>' успешно добавлена!</b>",
+                    self.strings("added2").format(key_rp),
                 )
         except:
             await utils.answer(
-                message, "<b>Вы не ввели разделитель /, либо вовсе ничего не ввели.</b>"
+                message, self.strings("weresall"),
             )
 
     async def delrpcmd(self, message):
-        """Используй: .delrp (команда) чтобы удалить команду.\n Используй: .delrp all чтобы удалить все команды."""
+        """Use: .delrp (command) to delete command.\n Use: .delrp all to delete all commands."""
         args = utils.get_args_raw(message)
         dict_rp = self.db.get("RPMod", "rpcomands")
         dict_emoji_rp = self.db.get("RPMod", "rpemoji")
@@ -184,10 +285,10 @@ class RPMod(loader.Module):
             dict_emoji_rp.clear()
             self.db.set("RPMod", "rpcomands", dict_rp)
             self.db.set("RPMod", "rpemoji", dict_emoji_rp)
-            await utils.answer(message, "<b>Список РП-команд очищен.</b>")
+            await utils.answer(message, self.strings("cleared"))
             return
         elif not key_rp or not key_rp.strip():
-            await utils.answer(message, "<b>Вы не ввели команду.</b>")
+            await utils.answer(message, self.strings("name?"))
         else:
             try:
                 if key_rp in dict_emoji_rp:
@@ -199,46 +300,45 @@ class RPMod(loader.Module):
                     dict_rp.pop(key_rp)
                     self.db.set("RPMod", "rpcomands", dict_rp)
                 await utils.answer(
-                    message, f"<b>Команда '<code>{key_rp}</code>' успешно удалена!</b>"
+                    message, self.strings("deleted").format(key_rp),
                 )
             except KeyError:
-                await utils.answer(message, "<b>Команда не найдена.</b>")
+                await utils.answer(message, self.strings("notfound"))
 
     async def rpmodcmd(self, message):
-        """Используй: .rpmod чтобы включить/выключить RP режим.\nИспользуй: .rpmod toggle чтобы сменить режим на отправку или изменение смс."""
+        """Use: .rpmod to turn on/off RP mode.\nUse: .rpmod toggle to change mode to send or edit message."""
         status = self.db.get("RPMod", "status")
         rezjim = self.db.get("RPMod", "rprezjim")
         args = utils.get_args_raw(message)
         if not args:
             if status == 1:
                 self.db.set("RPMod", "status", 2)
-                await utils.answer(message, "<b>RP Режим <code>выключен</code></b>")
+                await utils.answer(message, self.strings("on"))
             else:
                 self.db.set("RPMod", "status", 1)
-                await utils.answer(message, "<b>RP Режим <code>включен</code></b>")
+                await utils.answer(message, self.strings("off"))
         elif args.strip() == "toggle":
             if rezjim == 1:
                 self.db.set("RPMod", "rprezjim", 2)
                 await utils.answer(
-                    message, "<b>RP Режим изменён на <code>отправку смс.</code></b>"
+                    message, self.strings("mode").format(self.strings("send"))
                 )
             else:
                 self.db.set("RPMod", "rprezjim", 1)
                 await utils.answer(
-                    message, "<b>RP Режим изменён на <code>изменение смс.</code></b>"
+                    message, self.strings("mode").format(self.strings("edit"))
                 )
         else:
-            await utils.answer(message, "Что то не так.. ")
+            await utils.answer(message, self.strings("s-t-wrong"))
 
     async def rplistcmd(self, message):
-        """Используй: .rplist чтобы посмотреть список РП-команд."""
+        """Use: .rplist to see list of RP commands."""
         com = self.db.get("RPMod", "rpcomands")
         emojies = self.db.get("RPMod", "rpemoji")
         l = len(com)
-
-        listComands = f"У вас <b>{l}</b> РП-команд."
+        listComands = self.strings("count").format(l)
         if len(com) == 0:
-            await utils.answer(message, "<b>Увы, у вас нет РП-команд.</b>")
+            await utils.answer(message, self.strings("count").format(l))
             return
         for i in com:
             if i in emojies.keys():
@@ -248,7 +348,7 @@ class RPMod(loader.Module):
         await utils.answer(message, listComands)
 
     async def rpnickcmd(self, message):
-        """Используй: .rpnick (ник) чтобы сменить ник пользователю или себе. С аргументом -l вызовет все ники."""
+        """Use: .rpnick (nick) to change nick to user or yourself. With -l argument will show all nicks."""
         args = utils.get_args_raw(message).strip()
         reply = await message.get_reply_message()
         nicks = self.db.get("RPMod", "rpnicks")
@@ -268,7 +368,7 @@ class RPMod(loader.Module):
             self.db.set("RPMod", "rpnicks", nicks)
             return await utils.answer(
                 message,
-                f"Ник пользователя <b>{str(user.id)}</b> изменён на '<b>{user.first_name}</b>'",
+                self.strings("nick-changed").format(user.id, user.first_name),
             )
         lst = []
         nick = ""
@@ -276,11 +376,11 @@ class RPMod(loader.Module):
         self.db.set("RPMod", "rpnicks", nicks)
         await utils.answer(
             message,
-            f"Ник пользователя <b>{str(user.id)}</b> изменён на '<b>{args}</b>'",
+            self.strings("nick-changed").format(user.id, args),
         )
 
     async def rpbackcmd(self, message):
-        """Бекап РП-команд.\n .rpback для просмотра аргументов."""
+        """Backup RP commands.\n .rpback to see arguments."""
         args = utils.get_args_raw(message).strip()
         comands = self.db.get("RPMod", "rpcomands")
         emojies = self.db.get("RPMod", "rpemoji")
@@ -290,7 +390,7 @@ class RPMod(loader.Module):
         if not args:
             await utils.answer(
                 message,
-                "<b>Аргументы:</b>\n<code>-b</code> <b>-- сделать бекап.</b>\n<code>-r</code> <b>загрузить бекап.(используй с реплаем на файл)</b>",
+                self.strings("backup-args-help"),
             )
         if args == "-b":
             try:
@@ -304,7 +404,7 @@ class RPMod(loader.Module):
         elif args == "-r" and reply:
             try:
                 if not reply.document:
-                    await utils.answer(message, f"<b>Это не файл.</b>")
+                    await utils.answer(message, self.strings("itsnotafile"))
                 await reply.download_media(file_name)
                 with open(file_name, "rb") as f:
                     data = pickle.load(f)
@@ -314,12 +414,12 @@ class RPMod(loader.Module):
                 result_emj = dict(emojies, **emj)
                 self.db.set("RPMod", "rpcomands", result_rp)
                 self.db.set("RPMod", "rpemoji", result_emj)
-                await utils.answer(message, f"<b>Команды обновлены!</b>")
+                await utils.answer(message, self.strings("actualised"))
             except Exception as e:
-                await utils.answer(message, f"<b>Ошибка:\n</b>{e}")
+                await utils.answer(message, self.strings("error-with-type").format(e))
 
     async def rpblockcmd(self, message):
-        """Используй: .rpblock чтобы добавить/удалить исключение(использовать в нужном чате).\nИспользуй: .rpblock list чтобы просмотреть чаты в исключениях.\nИспользуй .rpblock (ид) чтобы удалить чат из исключений."""
+        """Use: .rpblock to add/remove exception (use in needed chat).\nUse: .rpblock list to see exceptions.\nUse .rpblock (id) to remove chat from exceptions."""
         args = utils.get_args_raw(message)
         ex = self.db.get("RPMod", "exlist")
         if not args:
@@ -333,7 +433,7 @@ class RPMod(loader.Module):
                     name = a.first_name
                 await utils.answer(
                     message,
-                    f"<i>Чат <b><u>{name}</u></b>[<code>{a.id}</code>] удален из исключений.</i>",
+                    self.strings("chat-included").format(name),
                 )
             else:
                 ex.append(a.id)
@@ -344,7 +444,7 @@ class RPMod(loader.Module):
                     name = a.first_name
                 await utils.answer(
                     message,
-                    f"<i>Чат <b><u>{name}</u></b>[<code>{a.id}</code>] добавлен в исключения.</i>",
+                    self.strings("chat-excluded").format(name),
                 )
         elif args.isdigit():
             args = int(args)
@@ -358,34 +458,32 @@ class RPMod(loader.Module):
                     name = a.first_name
                 await utils.answer(
                     message,
-                    f"<i>Чат <b><u>{name}</u></b>(<code>{args}</code>) удален из исключений.</i>",
+                    self.strings("chat-excluded").format(name),
                 )
             else:
                 try:
                     a = await message.client.get_entity(args)
                 except:
-                    await utils.answer(message, "<b>Неверный ид.</b>")
+                    await utils.answer(message, self.strings("is-wrong"))
                 ex.append(args)
                 self.db.set("RPMod", "exlist", ex)
                 try:
                     name = a.title
                 except:
                     name = a.first_name
-                await utils.answer(
-                    message,
-                    f"<i>Чат <b><u>{name}</u></b>[<code>{a.id}</code>] добавлен в исключения.</i>",
+                await utils.answer(message, self.strings("id-wrong"),
                 )
         elif args == "list":
             ex_len = len(ex)
             if ex_len == 0:
-                await utils.answer(message, f"<b>Список исключений пуст.</b>")
+                await utils.answer(message, self.strings("empty-exclude"))
                 return
-            sms = f"<i> Чаты, которые есть в исключениях({ex_len}):</i>"
+            sms = self.strings("excluded-chats")
             for i in ex:
                 try:
                     a = await message.client.get_entity(i)
                 except:
-                    await utils.answer(message, f"<b>Неверный ид -- {a}</b>")
+                    await utils.answer(message, self.strings("id-wrong"))
                     return
                 try:
                     name = a.title
@@ -394,10 +492,10 @@ class RPMod(loader.Module):
                 sms += f"\n• <b><u>{name}</u> --- </b><code>{i}</code>"
             await utils.answer(message, sms)
         else:
-            await utils.answer(message, "Что то пошло не так..")
+            await utils.answer(message, self.strings("s-t-wrong"))
 
     async def useracceptcmd(self, message):
-        """Добавление/удаление пользователей/чатов, разрешенным использовать ваши команды.\n .useraccept {id/reply}\nДля добавления чата используй без реплая и аргументов."""
+        """Adding/removing users/chats, allowed to use your commands.\n .useraccept {id/reply}\nTo add chat use without reply and args."""
         reply = await message.get_reply_message()
         args = utils.get_args_raw(message)
         userA = self.db.get("RPMod", "useraccept")
@@ -407,21 +505,21 @@ class RPMod(loader.Module):
                 userA["chats"].append(chat.id)
                 return await utils.answer(
                     message,
-                    f"<i>Чату <b><u>{chat.title}</u></b>[<code>{chat.id}</code>] открыт доступ.</i>",
+                    self.strings("on-in-chat").format(chat.title),
                 )
             else:
                 userA["chats"].remove(chat.id)
                 return await utils.answer(
                     message,
-                    f"<i>Чату <b><u>{chat.title}</u></b>[<code>{chat.id}</code>] закрыт доступ.</i>",
+                    self.strings("off-in-chat").format(chat.title),
                 )
         elif args == "-l":
-            sms = "<b>Пользователи, у которых есть доступ к командам:</b>"
+            sms = self.strings("who-have")
             for k, v in userA.items():
                 if k == "chats":
-                    sms += f"\n<b>Чатов:</b>"
+                    sms += self.strings("chats-s")
                 else:
-                    sms += f"\n<b>Пользователей:</b>"
+                    sms += self.strings("users-s")
                 for i in v:
                     try:
                         user = (
@@ -440,39 +538,39 @@ class RPMod(loader.Module):
                 self.db.set("RPMod", "useraccept", userA)
                 await utils.answer(
                     message,
-                    f"<b>Пользователю <code>{args}</code> был закрыт доступ.</b>",
+                    self.strings("off-for-user").format(args)
                 )
             elif args in userA["chats"]:
                 userA["chats"].remove(args)
                 self.db.set("RPMod", "useraccept", userA)
                 await utils.answer(
-                    message, f"<b>Чату <code>{args}</code> был закрыт доступ.</b>"
+                    message, self.strings("off-in-chat").format(args)
                 )
             elif (
-                args not in userA["chats"]
-                and type(await message.client.get_entity(args)) == Channel
+                    args not in userA["chats"]
+                    and type(await message.client.get_entity(args)) == Channel
             ):
                 userA["chats"].append(args)
                 self.db.set("RPMod", "useraccept", userA)
                 await utils.answer(
-                    message, f"<b>Чату <code>{args}</code> был открыт доступ.</b>"
+                    message, self.strings("on-in-chat").format(args)
                 )
             else:
                 userA["users"].append(args)
                 self.db.set("RPMod", "useraccept", userA)
                 await utils.answer(
                     message,
-                    f"<b>Пользователю <code>{args}</code> был открыт доступ.</b>",
+                    self.strings("on-for-user").format(args),
                 )
         else:
-            await utils.answer(message, "Что то не так..")
+            await utils.answer(message, self.strings("s-t-wrong"))
 
     async def rpconfcmd(self, message):
-        """Настройка шаблона для рп"""
+        """Setting up the template for rp"""
         conf = self.db.get("RPMod", "rpconfigurate", conf_default)
         args = utils.get_args_raw(message)
         if not args:
-            sms = "⚙️ <b>Настройка шаблона для команды:</b>\n"
+            sms = self.strings("config1")
             s1 = "\n".join(
                 [
                     " | ".join([key, value[1], "✅" if value[0] else "❌"])
@@ -503,11 +601,11 @@ class RPMod(loader.Module):
                     for key, value in conf["-sS"].items()
                 ]
             )
-            msg_text = f'⚙️ <b>Настройка шаблона для команды:</b>\n-s1 --- включить/выключить стиль для действия:\n{s1}\n-s2 --- аналогично для s1, но действует на текст "С репликой":\n{s2}\n-s3 --- аналогично для s2, но действует на саму реплику:\n{s3}\n-sE --- выбор эмодзи перед репликой:\n{sE}\n-sS --- выбор символа для разрыва строк в реплике:\n{sS}\n\nПример:\n<code>.rpconf -s1 2</code>'
+            msg_text = self.strings("config2").format(s1, s2, s3, sE, sS)
             return await utils.answer(message, msg_text)
         args = args.split(" ")
         if len(args) <= 1:
-            return await utils.answer(message, "Было введено меньше двух аргументов.")
+            return await utils.answer(message, self.strings("less-then-2"))
         try:
             if args[0] == "-s1" or args[0] == "-s2" or args[0] == "-s3":
                 if conf[args[0]][args[1]][0]:
@@ -519,18 +617,15 @@ class RPMod(loader.Module):
                     conf[args[0]][i][0] = False
                 conf[args[0]][args[1]][0] = True
             else:
-                return await utils.answer(message, "Неизвестный аргумент.")
+                return await utils.answer(message, self.strings("arg-unknown"))
         except:
-            return await utils.answer(message, "Неверная цифра.")
+            return await utils.answer(message, self.strings("num-unknown"))
         self.db.set("RPMod", "rpconfigurate", conf)
-        await utils.answer(message, f"Конфигурация успешно изменена.")
-    
-    
+        await utils.answer(message, self.strings("done"))
+
     async def mmminfocmd(self, message):
         """Прочитать информацию о моде и обновлениях, если те были."""
-        await utils.answer(message, '🍋 <b>LiMERPMod</b> (1.1)\nМодификация модуля RPMod @trololo_1 (<3) от @mm_mods. Заметки о выпуске:\n\n• Убраны лимиты на количество РП-команд;\n• Убраны лимиты на длину ника;\n• Убрана проверка на наличие лишь стандартных эмоджи — можете теперь вставлять, что хотите — включая кастомные эмодзи…\n• Регистр в дополнениях и репликах теперь сохраняется;\n• Убран багованный импорт с подпроцессом.\n\n🌠 <i>Enjoy!</i>')
-    
-
+        await utils.answer(message, self.strings("whatschanged"))
     async def watcher(self, message):
         try:
             status = self.db.get("RPMod", "status")
@@ -640,8 +735,8 @@ class RPMod(loader.Module):
                 rpMessageSend += emojies[detail[0]] + " | "
             rpMessageSend += f"<a href=tg://user?id={me.id}>{nick}</a> {s1[0]}{comand[detail[0]]}{s1[1]} <a href=tg://user?id={user.id}>{user.first_name}</a>{detail[1]}"
             if len(lines) >= 2:
-                rpMessageSend += "\n{0} {1[0]}С репликой:{1[1]} {2[0]}{3}{2[1]}".format(
-                    sE, s2, s3, sS.join(lines[1:])
+                rpMessageSend += "\n{0} {1[0]}{2}{1[1]} {3[0]}{4}{3[1]}".format(
+                    sE, s2, self.strings("with-replica"), s3, sS.join(lines[1:])
                 )
             if rezjim == 1:
                 return await utils.answer(message, rpMessageSend)
