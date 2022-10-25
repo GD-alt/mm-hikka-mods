@@ -313,10 +313,10 @@ class RPMod(loader.Module):
         if not args:
             if status == 1:
                 self.db.set("RPMod", "status", 2)
-                await utils.answer(message, self.strings("on"))
+                await utils.answer(message, self.strings("off"))
             else:
                 self.db.set("RPMod", "status", 1)
-                await utils.answer(message, self.strings("off"))
+                await utils.answer(message, self.strings("on"))
         elif args.strip() == "toggle":
             if rezjim == 1:
                 self.db.set("RPMod", "rprezjim", 2)
@@ -624,7 +624,7 @@ class RPMod(loader.Module):
         await utils.answer(message, self.strings("done"))
 
     async def mmminfocmd(self, message):
-        """Прочитать информацию о моде и обновлениях, если те были."""
+        """Read mod information and updates."""
         await utils.answer(message, self.strings("whatschanged"))
     async def watcher(self, message):
         try:
