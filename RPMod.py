@@ -99,19 +99,19 @@ class RPMod(loader.Module):
         'on-for-usr': '<b>RP commands are now on for <code>{}</code>!</b>',
         'off-for-usr': '<b>RP commands are now off for <code>{}</code>!</b>',
         'whatschanged': '''🍋 <b>LIME</b> (1.1) — mod of RPMod (@trololo_1) by @mm_mods
-        What\'s changed?
-        • No limits now!
-        • No check for emoji validity now — add custom emojies…
-        • No buggy import now, everyone can use the module.
-        • Additions and replicas now save there\'s case.
-        Enjoy!''',
+What\'s changed?
+    • No limits now!
+    • No check for emoji validity now — add custom emojies…
+    • No buggy import now, everyone can use the module.
+    • Additions and replicas now save there\'s case.
+Enjoy!''',
         'with-replica': 'With replica:',
         'backup-args-help': '<b>Usage:</b>\n.rpback [-b to save| -l to load (with reply)]',
         'arg-unknown': '<b>Unknown argument!</b>',
         'num-unknown': '<b>Unknown number!</b>',
         'done': '<b>Done!</b>',
         'less-then-2': '<b>Less then 2 arguments!</b>',
-        'config': '⚙️ <b>Setting up the template for command:</b>\n-s1 --- turn on/off style for action:\n{s1}\n-s2 '
+        'config2': '⚙️ <b>Setting up the template for command:</b>\n-s1 --- turn on/off style for action:\n{s1}\n-s2 '
                   '--- same as s1, but for "With replica" text:\n{}\n-s3 --- same as s2, but for replica:\n{}\n-sE '
                   '--- choose emoji before replica:\n{}\n-sS --- choose symbol for line break in reply:\n{'
                   '}\n\nExample:\n<code>.rpconf -s1 2</code>',
@@ -155,19 +155,19 @@ class RPMod(loader.Module):
         'on-for-usr': '<b>РП-команды теперь включены для <code>{}</code>!</b>',
         'off-for-usr': '<b>РП-команды теперь выключены для <code>{}</code>!</b>',
         'whatschanged': '''🍋 <b>LIME</b> (1.1) — модуль RPMod (@trololo_1) от @mm_mods
-        Что изменилось?
-        • Больше нет ограничений!
-        • Больше нет проверки на валидность эмодзи — добавляйте кастомные эмодзи…
-        • Больше нет багов с импортом — теперь модуль может использовать каждый.
-        • Дополнения и реплики теперь сохраняют свой регистр.
-        Наслаждайтесь!''',
+Что изменилось?
+    • Больше нет ограничений!
+    • Больше нет проверки на валидность эмодзи — добавляйте кастомные эмодзи…
+    • Больше нет багов с импортом — теперь модуль может использовать каждый.
+    • Дополнения и реплики теперь сохраняют свой регистр.
+Наслаждайтесь!''',
         'with-replica': 'С репликой:',
-        'backup-args-help': '<b>Использование:</b>\n.rpback [-b для сохранения| -l для загрузки (с ответом)]',
+        'backup-args-help': '<b>Использование:</b>\n.rpback [-b для сохранения | -l для загрузки (с ответом)]',
         'arg-unknown': '<b>Неизвестный аргумент!</b>',
         'num-unknown': '<b>Неизвестная цифра!</b>',
         'done': '<b>Готово!</b>',
         'less-than-2': '<b>Меньше двух аргументов передано.</b>',
-        'config': '⚙️ <b>Настройка шаблона для команды:</b>\n-s1 --- включить/выключить стиль для действия:\n{}\n-s2 '
+        'config2': '⚙️ <b>Настройка шаблона для команды:</b>\n-s1 --- включить/выключить стиль для действия:\n{}\n-s2 '
                   '--- аналогично для s1, но действует на текст "С репликой":\n{}\n-s3 --- аналогично для s2, '
                   'но действует на саму реплику:\n{}\n-sE --- выбор эмодзи перед репликой:\n{}\n-sS --- выбор символа '
                   'для разрыва строк в реплике:\n{}\n\nПример:\n<code>.rpconf -s1 2</code>',
@@ -401,7 +401,7 @@ class RPMod(loader.Module):
                 await message.client.send_file(id, file_name)
             except Exception as e:
                 await utils.answer(message, f"<b>Ошибка:\n</b>{e}")
-        elif args == "-r" and reply:
+        elif args == "-l" and reply:
             try:
                 if not reply.document:
                     await utils.answer(message, self.strings("itsnotafile"))
